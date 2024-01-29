@@ -10,5 +10,7 @@ Initialize virtual env with $pipenv shell
 
 Add project with django-admin startproject "name" .
 
+Add api app with $python manage.py startapp api
+
 * Dependencies
 - $pipenv install django

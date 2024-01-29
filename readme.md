@@ -1,6 +1,6 @@
 # Notes 
 
-Full stack project mande with django 5 and Flutter 3
+Full stack project made with django 5 and Flutter 3
 
 ## Dev notes
 

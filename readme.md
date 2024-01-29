@@ -12,5 +12,8 @@ Add project with django-admin startproject "name" .
 
 Add api app with $python manage.py startapp api
 
+Install rest framework with $pipenv install djangorestframework
+
 * Dependencies
 - $pipenv install django
+- $pipenv install djangorestframework

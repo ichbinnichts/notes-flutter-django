@@ -4,6 +4,8 @@ Full stack project made with django 5 and Flutter 3
 
 ## Dev notes
 
+* Django notes
+
 Install django in the virtual env with $pipenv install django
 
 Initialize virtual env with $pipenv shell
@@ -21,3 +23,6 @@ After makemigrations $python manage.py migrate
 * Dependencies
 - $pipenv install django
 - $pipenv install djangorestframework
+
+
+* Flutter notes

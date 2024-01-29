@@ -14,6 +14,10 @@ Add api app with $python manage.py startapp api
 
 Install rest framework with $pipenv install djangorestframework
 
+After making models $python manage.py makemigrations "app-name"
+
+After makemigrations $python manage.py migrate
+
 * Dependencies
 - $pipenv install django
 - $pipenv install djangorestframework

@@ -20,6 +20,8 @@ After making models $python manage.py makemigrations "app-name"
 
 After makemigrations $python manage.py migrate
 
+Create a super user with $python manage.py createsuperuser
+
 * Dependencies
 - $pipenv install django
 - $pipenv install djangorestframework

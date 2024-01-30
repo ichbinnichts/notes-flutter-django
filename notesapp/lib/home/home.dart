@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:notesapp/models/note.dart';
+import 'package:notesapp/notes/create.dart';
 import 'package:notesapp/urls.dart';
 
 class Home extends StatefulWidget {
@@ -19,12 +20,16 @@ class _HomeState extends State<Home> {
   Client client = http.Client();
   List<Note> notes = [];
 
-  void _addNote() {}
-
   @override
   void initState() {
     _retrieveNotes();
     super.initState();
+  }
+
+  _goToCreatePage() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => const CreatePage(),
+    ));
   }
 
   void _deleteNote(int id) async {
@@ -94,7 +99,7 @@ class _HomeState extends State<Home> {
             }),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _addNote,
+        onPressed: () => _goToCreatePage(),
         tooltip: 'Add Note',
         child: Icon(Icons.add),
       ),

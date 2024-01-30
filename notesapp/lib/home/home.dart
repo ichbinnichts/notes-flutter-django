@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -7,6 +9,7 @@ class Home extends StatefulWidget {
   Home({super.key});
 
   String title = "Notes app";
+  String hostUrl = "http://locahost:8000";
 
   @override
   State<Home> createState() => _HomeState();
@@ -24,8 +27,17 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
-  _retrieveNotes() {
+  _retrieveNotes() async {
     notes = [];
+
+    List response = json
+        .decode((await client.get(Uri.parse('${widget.hostUrl}/notes/'))).body);
+
+    response.forEach((element) {
+      notes.add(Note.fromMap(element));
+    });
+
+    setState(() {});
   }
 
   @override
@@ -35,10 +47,13 @@ class _HomeState extends State<Home> {
         title: Text(widget.title),
         backgroundColor: Colors.blue[200],
       ),
-      body: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[Text('Hello')],
-      ),
+      body: ListView.builder(
+          itemCount: notes.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              title: Text(notes[index].note),
+            );
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: _addNote,
         tooltip: 'Add Note',

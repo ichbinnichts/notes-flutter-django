@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:notesapp/models/note.dart';
 
 class Home extends StatefulWidget {
   Home({super.key});
@@ -10,6 +13,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Client client = http.Client();
+  List<Note> notes = [];
+
+  void _addNote() {}
+
+  @override
+  void initState() {
+    _retrieveNotes();
+    super.initState();
+  }
+
+  _retrieveNotes() {
+    notes = [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +40,8 @@ class _HomeState extends State<Home> {
         children: <Widget>[Text('Hello')],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Hello',
+        onPressed: _addNote,
+        tooltip: 'Add Note',
         child: Icon(Icons.add),
       ),
     );

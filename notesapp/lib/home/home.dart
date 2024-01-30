@@ -70,6 +70,11 @@ class _HomeState extends State<Home> {
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 title: Text(notes[index].note),
+                onTap: () {},
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () {},
+                ),
               );
             }),
       ),

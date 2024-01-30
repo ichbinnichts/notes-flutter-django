@@ -61,13 +61,18 @@ class _HomeState extends State<Home> {
         title: Text(widget.title),
         backgroundColor: Colors.blue[200],
       ),
-      body: ListView.builder(
-          itemCount: notes.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text(notes[index].note),
-            );
-          }),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          _retrieveNotes();
+        },
+        child: ListView.builder(
+            itemCount: notes.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text(notes[index].note),
+              );
+            }),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addNote,
         tooltip: 'Add Note',

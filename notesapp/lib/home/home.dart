@@ -15,6 +15,16 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Colors.blue[200],
+      ),
+      body: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[Text('Hello')],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        tooltip: 'Hello',
+        child: Icon(Icons.add),
       ),
     );
   }

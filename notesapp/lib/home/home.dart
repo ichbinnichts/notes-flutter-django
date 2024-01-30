@@ -27,6 +27,22 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+  void _deleteNote(int id) async {
+    try {
+      var response =
+          await client.delete(Uri.parse('${widget.hostUrl}/notes/$id/delete/'));
+
+      if (response.statusCode == 200) {
+        _retrieveNotes();
+      } else {
+        print(
+            'API request failed on delete method with status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error while deleting data from api ' + e.toString());
+    }
+  }
+
   _retrieveNotes() async {
     notes = [];
 
@@ -72,8 +88,8 @@ class _HomeState extends State<Home> {
                 title: Text(notes[index].note),
                 onTap: () {},
                 trailing: IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: () {},
+                  icon: const Icon(Icons.delete),
+                  onPressed: () => _deleteNote(notes[index].id),
                 ),
               );
             }),

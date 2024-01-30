@@ -29,5 +29,6 @@ In the end of the api add cors
 - $pipenv install djangorestframework
 - $pipenv install django-cors-headers
 
+<hr/>
 
 * Flutter notes

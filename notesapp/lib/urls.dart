@@ -5,6 +5,10 @@ class Urls {
     return '$baseUrl/notes/';
   }
 
+  String getNoteById(int id) {
+    return '$baseUrl/notes/$id';
+  }
+
   String createNoteUrl() {
     return '$baseUrl/notes/create';
   }

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:notesapp/models/note.dart';
+import 'package:notesapp/urls.dart';
 
 class Home extends StatefulWidget {
   Home({super.key});
 
   String title = "Notes app";
-  String hostUrl = "http://localhost:8000";
 
   @override
   State<Home> createState() => _HomeState();
@@ -29,8 +29,7 @@ class _HomeState extends State<Home> {
 
   void _deleteNote(int id) async {
     try {
-      var response =
-          await client.delete(Uri.parse('${widget.hostUrl}/notes/$id/delete/'));
+      var response = await client.delete(Uri.parse(Urls().deleteNoteUrl(id)));
 
       if (response.statusCode == 200) {
         _retrieveNotes();
@@ -47,7 +46,7 @@ class _HomeState extends State<Home> {
     notes = [];
 
     try {
-      var response = await client.get(Uri.parse('${widget.hostUrl}/notes/'));
+      var response = await client.get(Uri.parse(Urls().getNotesUrl()));
 
       if (response.statusCode == 200) {
         List<dynamic> jsonList = jsonDecode(response.body);

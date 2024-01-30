@@ -9,7 +9,7 @@ class Home extends StatefulWidget {
   Home({super.key});
 
   String title = "Notes app";
-  String hostUrl = "http://locahost:8000";
+  String hostUrl = "http://localhost:8000";
 
   @override
   State<Home> createState() => _HomeState();
@@ -30,12 +30,26 @@ class _HomeState extends State<Home> {
   _retrieveNotes() async {
     notes = [];
 
-    List response = json
-        .decode((await client.get(Uri.parse('${widget.hostUrl}/notes/'))).body);
+    try {
+      var response = await client.get(Uri.parse('${widget.hostUrl}/notes/'));
 
-    response.forEach((element) {
-      notes.add(Note.fromMap(element));
-    });
+      if (response.statusCode == 200) {
+        List<dynamic> jsonList = jsonDecode(response.body);
+
+        List<Note> noteList = jsonList
+            .map((json) => Note(
+                  id: json['id'],
+                  note: json['body'],
+                ))
+            .toList();
+
+        notes = noteList;
+      } else {
+        print('API request failed with status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print("Error while getting response from API: $e");
+    }
 
     setState(() {});
   }

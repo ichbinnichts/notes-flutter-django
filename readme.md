@@ -32,3 +32,9 @@ In the end of the api add cors
 <hr/>
 
 * Flutter notes
+
+Flutter version 3 with http version 0.13.3 dependency
+Created this flutter project with flutter create "your-project-name"
+
+* Dependencies
+- http - 0.13.3

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:notesapp/home/home.dart';
+import 'package:notesapp/urls.dart';
 
 class CreatePage extends StatefulWidget {
   final Client client;
@@ -13,7 +15,19 @@ class CreatePage extends StatefulWidget {
 class _CreatePageState extends State<CreatePage> {
   TextEditingController controller = TextEditingController();
 
-  _create() {}
+  _create() async {
+    try {
+      await widget.client.post(Uri.parse(Urls().createNoteUrl()),
+          body: {'body': controller.text});
+      _returnToHomePage();
+    } catch (e) {
+      print("Error while creating " + e.toString());
+    }
+  }
+
+  _returnToHomePage() {
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +42,9 @@ class _CreatePageState extends State<CreatePage> {
             controller: controller,
           ),
           ElevatedButton(
-            onPressed: () => _create,
+            onPressed: () async {
+              await _create();
+            },
             child: const Text('Create note'),
           )
         ],

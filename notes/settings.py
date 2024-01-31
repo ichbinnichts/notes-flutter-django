@@ -84,6 +84,74 @@ DATABASES = {
     }
 }
 
+# Connection with POSTGRESQL
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'your_db_name', 
+#         'USER': 'postgres',
+#         'PASSWORD': 'your_db_password',
+#         'HOST': '127.0.0.1', 
+#         'PORT': '5432',
+#     }
+# }
+
+# For env variables use this
+
+# pip install django-environ
+
+# pip install psycopg2 // use this for PostgreSQL driver
+
+# create .env file to store environment variables
+
+# In the base or root directory, add .gitignore to not push .env file into our Git repo, also the files or directories following:
+
+# db.sqlite3
+# /env
+# *.env
+
+# .gitignore
+
+# *.pyc
+# __pycache__
+# db.sqlite3
+# /env
+# *.env
+# .vscode
+
+
+# The final version of settings.py should look like this
+
+
+# import environ
+# env = environ.Env()
+# environ.Env.read_env()
+# ...
+# # Your secret key
+# SECRET_KEY = env("SECRET_KEY")
+# ...
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env("DB_NAME"),
+#         'USER': env("DB_USER"),
+#         'PASSWORD': env("DB_PASSWORD"),
+#         'HOST': env("DB_HOST"),
+#         'PORT': env("DB_PORT"),
+#     }
+# }
+
+
+
+
+
+
+
+
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

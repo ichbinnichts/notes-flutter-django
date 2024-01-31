@@ -6,11 +6,11 @@ class Urls {
   }
 
   String getNoteById(int id) {
-    return '$baseUrl/notes/$id';
+    return '$baseUrl/notes/$id/';
   }
 
   String createNoteUrl() {
-    return '$baseUrl/notes/create';
+    return '$baseUrl/notes/create/';
   }
 
   String deleteNoteUrl(int id) {

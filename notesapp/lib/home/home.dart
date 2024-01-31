@@ -28,7 +28,9 @@ class _HomeState extends State<Home> {
 
   _goToCreatePage() {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (BuildContext context) => const CreatePage(),
+      builder: (BuildContext context) => CreatePage(
+        client: client,
+      ),
     ));
   }
 

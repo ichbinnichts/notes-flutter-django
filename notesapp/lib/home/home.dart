@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:notesapp/models/note.dart';
 import 'package:notesapp/notes/create.dart';
+import 'package:notesapp/notes/update.dart';
 import 'package:notesapp/urls.dart';
 
 class Home extends StatefulWidget {
@@ -76,6 +77,12 @@ class _HomeState extends State<Home> {
     setState(() {});
   }
 
+  _goToUpdatePage(Note note) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (BuildContext context) =>
+            UpdatePage(client: client, note: note)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +99,9 @@ class _HomeState extends State<Home> {
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 title: Text(notes[index].note),
-                onTap: () {},
+                onTap: () {
+                  _goToUpdatePage(notes[index]);
+                },
                 trailing: IconButton(
                   icon: const Icon(Icons.delete),
                   onPressed: () => _deleteNote(notes[index].id),
